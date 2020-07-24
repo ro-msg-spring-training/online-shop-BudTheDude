@@ -7,14 +7,16 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "supplier")
 public class Supplier {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    int id;
 
-    @Column
-    String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "name")
+    private String name;
 
     @OneToMany(mappedBy = "supplier")
-    List<Product> products;
+    private List<Product> products;
 }

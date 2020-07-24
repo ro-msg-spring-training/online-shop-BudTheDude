@@ -7,18 +7,19 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "product_Category")
 public class ProductCategory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @Column
-    String name;
+    @Column(name = "name")
+    private String name;
 
-    @Column
-    String description;
+    @Column(name = "description")
+    private String description;
 
     @OneToMany(mappedBy = "category")
-    List<Product> products;
+    private List<Product> products;
 }

@@ -4,33 +4,38 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
+@Table(name = "order")
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @ManyToOne
-    Location shippedFrom;
+    private Location shippedFrom;
 
     @ManyToOne
-    Customer customer;
+    private Customer customer;
 
-    @Column
-    Date createdAt;
+    @Column(name = "createdAt")
+    private Date createdAt;
 
-    @Column
-    String country;
+    @Column(name = "country")
+    private String country;
 
-    @Column
-    String city;
+    @Column(name = "city")
+    private String city;
 
-    @Column
-    String county;
+    @Column(name = "county")
+    private String county;
 
-    @Column
-    String streetAddress;
+    @Column(name = "streetAddress")
+    private String streetAddress;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetailList;
 }

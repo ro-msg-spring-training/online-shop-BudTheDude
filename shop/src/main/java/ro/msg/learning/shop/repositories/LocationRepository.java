@@ -6,6 +6,6 @@ import ro.msg.learning.shop.entities.Customer;
 import ro.msg.learning.shop.entities.Location;
 
 @Repository
-public interface LocationRepository extends JpaRepository<Location,Long> {
+public interface LocationRepository extends JpaRepository<Location,Integer> {
 
 }

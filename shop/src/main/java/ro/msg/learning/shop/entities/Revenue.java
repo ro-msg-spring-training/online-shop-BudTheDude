@@ -7,17 +7,18 @@ import java.util.Date;
 
 @Data
 @Entity
+@Table(name = "revenue")
 public class Revenue {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @ManyToOne
-    Location location;
+    private Location location;
 
-    @Column
-    Date date;
+    @Column(name = "date")
+    private Date date;
 
-    @Column
-    long sum;
+    @Column(name ="sum")
+    private long sum;
 }

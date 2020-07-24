@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `productCategory` (
+CREATE TABLE IF NOT EXISTS `product_Category` (
 
                                           `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                           `name` varchar(20),
@@ -94,6 +94,18 @@ CREATE TABLE IF NOT EXISTS `orderDetail` (
 
 );
 
+ALTER TABLE `stock`
+    ADD FOREIGN KEY (`product`) REFERENCES `product`(`id`);
+
+ALTER TABLE `stock`
+    ADD FOREIGN KEY (`location`) REFERENCES `location`(`id`);
+
+ALTER TABLE `orderDetail`
+    ADD FOREIGN KEY (`order`) REFERENCES `order`(`id`);
+
+ALTER TABLE `orderDetail`
+    ADD FOREIGN KEY (`product`) REFERENCES `product`(`id`);
+
 ALTER TABLE `revenue`
     ADD FOREIGN KEY (`location`) REFERENCES `location`(`id`);
 
@@ -104,7 +116,7 @@ ALTER TABLE `order`
     ADD FOREIGN KEY (`customer`) REFERENCES `customer`(`id`);
 
 ALTER TABLE `product`
-    ADD FOREIGN KEY (`category`) REFERENCES `productCategory`(`id`);
+    ADD FOREIGN KEY (`category`) REFERENCES `product_Category`(`id`);
 
 ALTER TABLE `product`
     ADD FOREIGN KEY (`supplier`) REFERENCES `supplier`(`id`);

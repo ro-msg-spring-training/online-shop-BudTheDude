@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import ro.msg.learning.shop.entities.Customer;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer,Long> {
+public interface CustomerRepository extends JpaRepository<Customer,Integer> {
 
 }

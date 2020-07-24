@@ -7,26 +7,27 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "customer")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @Column
-    String firstName;
+    @Column(name = "firstName")
+    private String firstName;
 
-    @Column
-    String lastName;
+    @Column(name = "lastName")
+    private String lastName;
 
-    @Column
-    String userName;
+    @Column(name = "userName")
+    private String userName;
 
-    @Column
-    String password;
+    @Column(name = "password")
+    private String password;
 
-    @Column
-    String emailAddress;
+    @Column(name = "emailAddress")
+    private String emailAddress;
 
     @OneToMany(mappedBy = "customer")
-    List<Order> orders;
+    private List<Order> orders;
 }
