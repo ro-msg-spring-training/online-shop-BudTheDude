@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `location` (
                                           `country` varchar(20),
                                           `city` varchar(20),
                                           `county` varchar(20),
-                                          `streetAddress` varchar(20)
+                                          `street_Address` varchar(20)
 
 
 );
@@ -76,10 +76,10 @@ CREATE TABLE IF NOT EXISTS `order` (
 
 CREATE TABLE IF NOT EXISTS `stock` (
 
-                                       `product` int,
-                                       `location` int,
+                                       `product_id` int,
+                                       `location_id` int,
                                        `quantity` int,
-                                       primary key (`product`,`location`)
+                                       primary key (`product_id`,`location_id`)
 
 
 );
@@ -95,10 +95,10 @@ CREATE TABLE IF NOT EXISTS `orderDetail` (
 );
 
 ALTER TABLE `stock`
-    ADD FOREIGN KEY (`product`) REFERENCES `product`(`id`);
+    ADD FOREIGN KEY (`product_id`) REFERENCES `product`(`id`);
 
 ALTER TABLE `stock`
-    ADD FOREIGN KEY (`location`) REFERENCES `location`(`id`);
+    ADD FOREIGN KEY (`location_id`) REFERENCES `location`(`id`);
 
 ALTER TABLE `orderDetail`
     ADD FOREIGN KEY (`order`) REFERENCES `order`(`id`);

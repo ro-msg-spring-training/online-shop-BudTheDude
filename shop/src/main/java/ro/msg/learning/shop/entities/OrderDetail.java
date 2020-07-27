@@ -5,6 +5,7 @@ import ro.msg.learning.shop.embedded_IDs.OrderDetailID;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "orderDetail")
 public class OrderDetail {
 
     @AttributeOverrides({
@@ -22,6 +23,9 @@ public class OrderDetail {
     @MapsId("productID")
     @ManyToOne
     private Product product;
+
+    @Column(name = "quantity")
+    private int quantity;
 
 
 }
