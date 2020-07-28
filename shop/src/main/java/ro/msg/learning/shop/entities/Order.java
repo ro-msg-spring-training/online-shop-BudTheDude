@@ -1,6 +1,9 @@
 package ro.msg.learning.shop.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,7 +11,9 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "order")
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "order1")
 public class Order {
 
     @Id
@@ -21,8 +26,8 @@ public class Order {
     @ManyToOne
     private Customer customer;
 
-    @Column(name = "createdAt")
-    private Date createdAt;
+    @Column(name = "created_At")
+    private String createdAt;
 
     @Column(name = "country")
     private String country;
@@ -33,8 +38,9 @@ public class Order {
     @Column(name = "county")
     private String county;
 
-    @Column(name = "streetAddress")
+    @Column(name = "street_Address")
     private String streetAddress;
+
 
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetailList;

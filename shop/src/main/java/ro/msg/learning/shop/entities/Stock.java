@@ -1,6 +1,7 @@
 package ro.msg.learning.shop.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import ro.msg.learning.shop.embedded_IDs.StockID;
 
@@ -20,9 +21,13 @@ public class Stock {
     private StockID stockID;
 
 
+
+
     @MapsId(value = "locationID")
     @ManyToOne
     private Location location;
+
+
 
 
     @MapsId(value = "productID")

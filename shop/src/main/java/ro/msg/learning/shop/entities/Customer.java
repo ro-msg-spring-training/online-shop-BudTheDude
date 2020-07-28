@@ -13,19 +13,19 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "firstName")
+    @Column(name = "first_Name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "last_Name")
     private String lastName;
 
-    @Column(name = "userName")
+    @Column(name = "user_Name")
     private String userName;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "emailAddress")
+    @Column(name = "email_Address")
     private String emailAddress;
 
     @OneToMany(mappedBy = "customer")

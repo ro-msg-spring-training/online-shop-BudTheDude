@@ -13,6 +13,7 @@ import java.util.List;
 public class OrderDTO {
 
     private String timeStamp;
+    private int customerID;
     private String country;
     private String city;
     private String county;

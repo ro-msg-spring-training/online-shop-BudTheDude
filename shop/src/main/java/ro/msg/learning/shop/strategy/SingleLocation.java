@@ -2,7 +2,7 @@ package ro.msg.learning.shop.strategy;
 
 import ro.msg.learning.shop.dto.OrderDTO;
 import ro.msg.learning.shop.dto.SimplifiedProductDTO;
-import ro.msg.learning.shop.entities.Order;
+import ro.msg.learning.shop.dto.StockDTO;
 import ro.msg.learning.shop.entities.Stock;
 import ro.msg.learning.shop.repositories.StockRepository;
 
@@ -12,21 +12,21 @@ import java.util.stream.Collectors;
 
 public class SingleLocation implements OrderingStrategy {
     @Override
-    public Order getFromStock(OrderDTO orderDTO, StockRepository stockRepository) {
+    public List<StockDTO> getFromStock(OrderDTO orderDTO, StockRepository stockRepository) throws Exception {
         List<Stock> stocks= stockRepository.findAll();
         List<SimplifiedProductDTO> simplifiedProductDTOS = orderDTO.getProducts();
         Set<Integer> locationIDs = new HashSet<>();
         stocks.forEach((n) -> locationIDs.add(n.getStockID().getLocationID()));
 
 
-        List<Order> orders = new ArrayList<>();
-
-        locationIDs.forEach((n)->{
+        for(Integer n : locationIDs){
             List<Stock> candidate = stocks.stream().
                     filter(m->m.getStockID().getLocationID()==n).
                     collect(Collectors.toList());
 
             AtomicBoolean valid = new AtomicBoolean(true);
+
+            List<StockDTO> validStocks = new ArrayList<>();
 
             simplifiedProductDTOS.forEach((p)->{
                 Optional<Stock> optional =candidate.stream().filter((c)->
@@ -36,17 +36,18 @@ public class SingleLocation implements OrderingStrategy {
 
                 if(optional.isEmpty()){
                     valid.set(false);
+                }else{
+                    validStocks.add(new StockDTO(optional.get().getStockID().getLocationID(),p.getID(),p.getQuantity()));
                 }
 
             });
 
             if(valid.get()){
-                candidate.forEach((o)->System.out.println(o.getStockID() + " " + o.getQuantity()));
+                validStocks.forEach((o)->System.out.println(o.getLocationID()+" "+o.getProductID()));
+                return validStocks;
             }
+        };
 
-
-        });
-
-        return null;
+        throw new Exception("No Set of Locations Found");
     }
 }

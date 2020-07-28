@@ -18,11 +18,11 @@ CREATE TABLE IF NOT EXISTS `supplier` (
 CREATE TABLE IF NOT EXISTS `customer` (
 
                                           `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                                          `firstName` varchar(20),
-                                          `lastName` varchar(20),
-                                          `userName` varchar(20),
+                                          `first_Name` varchar(20),
+                                          `last_Name` varchar(20),
+                                          `user_Name` varchar(20),
                                           `password` varchar(20),
-                                          `emailAddress` varchar(20)
+                                          `email_Address` varchar(20)
 
 
 );
@@ -61,16 +61,16 @@ CREATE TABLE IF NOT EXISTS `revenue` (
 
 );
 
-CREATE TABLE IF NOT EXISTS `order` (
+CREATE TABLE IF NOT EXISTS `order1` (
 
                                          `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                                         `shippedFrom` int,
-                                         `customer` int,
-                                         `createdAt` datetime,
+                                         `shipped_From_id` int,
+                                         `customer_id` int,
+                                         `created_At` varchar(20),
                                          `country` varchar(20),
                                          `city` varchar(20),
                                          `county` varchar(20),
-                                         `streetAddress` varchar(20)
+                                         `street_Address` varchar(20)
 
 );
 
@@ -101,7 +101,7 @@ ALTER TABLE `stock`
     ADD FOREIGN KEY (`location_id`) REFERENCES `location`(`id`);
 
 ALTER TABLE `orderDetail`
-    ADD FOREIGN KEY (`order`) REFERENCES `order`(`id`);
+    ADD FOREIGN KEY (`order`) REFERENCES `order1`(`id`);
 
 ALTER TABLE `orderDetail`
     ADD FOREIGN KEY (`product`) REFERENCES `product`(`id`);
@@ -109,11 +109,11 @@ ALTER TABLE `orderDetail`
 ALTER TABLE `revenue`
     ADD FOREIGN KEY (`location`) REFERENCES `location`(`id`);
 
-ALTER TABLE `order`
-    ADD FOREIGN KEY (`shippedFrom`) REFERENCES `location`(`id`);
+ALTER TABLE `order1`
+    ADD FOREIGN KEY (`shipped_From_id`) REFERENCES `location`(`id`);
 
-ALTER TABLE `order`
-    ADD FOREIGN KEY (`customer`) REFERENCES `customer`(`id`);
+ALTER TABLE `order1`
+    ADD FOREIGN KEY (`customer_id`) REFERENCES `customer`(`id`);
 
 ALTER TABLE `product`
     ADD FOREIGN KEY (`category`) REFERENCES `product_Category`(`id`);
@@ -121,6 +121,17 @@ ALTER TABLE `product`
 ALTER TABLE `product`
     ADD FOREIGN KEY (`supplier`) REFERENCES `supplier`(`id`);
 
+insert into supplier values(1,'Comat');
+insert into product_category values(1,'Laptops','Best');
+insert into product values(1,'Asus','good',2000,4,1,1,'');
+insert into product values(2,'Dell','good',2000,4,1,1,'');
+insert into customer values(1,'Bogdan','Bud','budb','parola','@');
+insert into location values(1,'Dedeman','RO','BM','MM','Victoriei');
+insert into location values(2,'Metro','RO','BM','MM','Victoriei');
+insert into stock values(1,1,40);
+insert into stock values(1,2,10);
+insert into stock values(2,1,20);
+insert into stock values(2,2,80);
 
 
 
