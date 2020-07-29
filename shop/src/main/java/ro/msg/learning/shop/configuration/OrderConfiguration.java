@@ -1,6 +1,6 @@
 package ro.msg.learning.shop.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -12,13 +12,12 @@ import java.util.Objects;
 
 
 @Configuration
+@AllArgsConstructor
 public class OrderConfiguration {
 
-    @Autowired
-    private Environment env;
-
     private final static Integer SingleLocation = 1;
-    private final static Integer MostAbundant = 2;
+
+    private final Environment env;
 
     @Bean
     public OrderingStrategy orderingStrategy(){

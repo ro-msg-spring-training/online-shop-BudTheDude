@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class MostAbundant implements OrderingStrategy {
     @Override
     public List<StockDTO> getFromStock(OrderDTO orderDTO, StockRepository stockRepository) throws Exception {
-        List<Stock> stocks= stockRepository.findAll();
+
         List<SimplifiedProductDTO> simplifiedProductDTOS = orderDTO.getProducts();
 
         List<StockDTO> validStocks=new ArrayList<>();

@@ -1,5 +1,6 @@
 package ro.msg.learning.shop.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ro.msg.learning.shop.dto.ProductDTO;
@@ -11,16 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product")
+@AllArgsConstructor
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
-    @Autowired
-    private ProductCategoryService productCategoryService;
-
-    @Autowired
-    private SupplierService supplierService;
 
     @PostMapping
     public String postProduct(@RequestBody ProductDTO productDTO){

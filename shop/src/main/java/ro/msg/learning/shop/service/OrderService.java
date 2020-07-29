@@ -1,5 +1,6 @@
 package ro.msg.learning.shop.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.msg.learning.shop.dto.OrderDTO;
@@ -16,21 +17,20 @@ import ro.msg.learning.shop.strategy.OrderingStrategy;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class OrderService {
-    @Autowired
-    OrderingStrategy orderingStrategy;
 
-    @Autowired
-    StockRepository stockRepository;
+    private final OrderingStrategy orderingStrategy;
 
-    @Autowired
-    CustomerRepository customerRepository;
+    private final StockRepository stockRepository;
 
-    @Autowired
-    OrderRepository orderRepository;
+    private final CustomerRepository customerRepository;
 
-    @Autowired
-    LocationRepository locationRepository;
+    private final OrderRepository orderRepository;
+
+    private final LocationRepository locationRepository;
+
+
 
     public Order order(OrderDTO orderDTO) throws Exception {
 

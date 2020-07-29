@@ -1,5 +1,6 @@
 package ro.msg.learning.shop.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ro.msg.learning.shop.dto.OrderDTO;
@@ -16,13 +17,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/order")
+@AllArgsConstructor
 public class OrderController {
 
-    @Autowired
-    OrderService orderService;
-
-    @Autowired
-    StockRepository stockRepository;
+    private final OrderService orderService;
 
     @PostMapping
     public String order(@RequestBody OrderDTO orderDTO) throws Exception {

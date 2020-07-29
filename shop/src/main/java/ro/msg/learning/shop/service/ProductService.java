@@ -1,29 +1,25 @@
 package ro.msg.learning.shop.service;
 
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.msg.learning.shop.dto.ProductDTO;
 import ro.msg.learning.shop.entities.Product;
 import ro.msg.learning.shop.entities.ProductCategory;
 import ro.msg.learning.shop.entities.Supplier;
 import ro.msg.learning.shop.repositories.ProductRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    @Autowired
-    private ProductCategoryService productCategoryService;
+    private final ProductCategoryService productCategoryService;
 
-    @Autowired
-    private SupplierService supplierService;
-
+    private final SupplierService supplierService;
 
     public void save(ProductDTO productDTO) {
         ModelMapper modelMapper = new ModelMapper();
