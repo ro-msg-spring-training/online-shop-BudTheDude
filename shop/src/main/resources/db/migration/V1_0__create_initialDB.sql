@@ -121,17 +121,7 @@ ALTER TABLE `product`
 ALTER TABLE `product`
     ADD FOREIGN KEY (`supplier`) REFERENCES `supplier`(`id`);
 
-insert into supplier values(1,'Comat');
-insert into product_category values(1,'Laptops','Best');
-insert into product values(1,'Asus','good',2000,4,1,1,'');
-insert into product values(2,'Dell','good',2000,4,1,1,'');
-insert into customer values(1,'Bogdan','Bud','budb','parola','@');
-insert into location values(1,'Dedeman','RO','BM','MM','Victoriei');
-insert into location values(2,'Metro','RO','BM','MM','Victoriei');
-insert into stock values(1,1,40);
-insert into stock values(1,2,10);
-insert into stock values(2,1,20);
-insert into stock values(2,2,80);
+
 
 
 

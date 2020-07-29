@@ -26,6 +26,7 @@ public class Stock {
 
 
 
+    @JsonIgnore
     @MapsId(value = "locationID")
     @ManyToOne
     private Location location;
@@ -33,6 +34,7 @@ public class Stock {
 
 
 
+    @JsonIgnore
     @MapsId(value = "productID")
     @ManyToOne
     private Product product;

@@ -43,7 +43,6 @@ public class SingleLocation implements OrderingStrategy {
             });
 
             if(valid.get()){
-                validStocks.forEach((o)->System.out.println(o.getLocationID()+" "+o.getProductID()));
                 return validStocks;
             }
         };
