@@ -1,4 +1,4 @@
-package ro.msg.learning.shop.entities;
+package ro.msg.learning.shop.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
@@ -46,7 +46,6 @@ public class Product {
     @OneToMany(mappedBy = "product")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<OrderDetail> orderDetailList;
-
 
 
 }

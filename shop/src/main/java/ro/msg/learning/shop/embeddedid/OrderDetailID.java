@@ -1,4 +1,4 @@
-package ro.msg.learning.shop.embedded_IDs;
+package ro.msg.learning.shop.embeddedid;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

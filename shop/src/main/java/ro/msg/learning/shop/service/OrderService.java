@@ -4,15 +4,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ro.msg.learning.shop.dto.OrderDTO;
 import ro.msg.learning.shop.dto.StockDTO;
-import ro.msg.learning.shop.entities.Customer;
-import ro.msg.learning.shop.entities.Location;
-import ro.msg.learning.shop.entities.Order;
-import ro.msg.learning.shop.entities.Stock;
-import ro.msg.learning.shop.repositories.CustomerRepository;
-import ro.msg.learning.shop.repositories.LocationRepository;
-import ro.msg.learning.shop.repositories.OrderRepository;
-import ro.msg.learning.shop.repositories.StockRepository;
+import ro.msg.learning.shop.entity.*;
+import ro.msg.learning.shop.repositories.*;
 import ro.msg.learning.shop.strategy.OrderingStrategy;
+
 import java.util.List;
 
 @Service
@@ -30,17 +25,16 @@ public class OrderService {
     private final LocationRepository locationRepository;
 
 
-
     public Order order(OrderDTO orderDTO) throws Exception {
 
-        List<StockDTO> foundLocations = orderingStrategy.getFromStock(orderDTO,stockRepository);
+        List<StockDTO> foundLocations = orderingStrategy.getFromStock(orderDTO, stockRepository);
 
         Order order = new Order();
 
-        Customer customer = customerRepository.findById(orderDTO.getCustomerID()).get();
+        Customer customer = customerRepository.findById(orderDTO.getCustomerID()).orElse(null);
 
         //Put 1 for location, as it was not specified how we should handle this field
-        Location location = locationRepository.findById(1).get();
+        Location location = locationRepository.findById(1).orElse(null);
 
         order.setShippedFrom(location);
         order.setCustomer(customer);
@@ -52,11 +46,14 @@ public class OrderService {
 
         orderRepository.save(order);
 
-        foundLocations.forEach((n)->{
-           Stock s = stockRepository.findByProductAndAndLocation(n.getProductID(),n.getLocationID());
-           int newQuantity = s.getQuantity() - n.getQuantity();
-           s.setQuantity(newQuantity);
-           stockRepository.save(s);
+        foundLocations.forEach((foundLoc) -> {
+            Stock stock = stockRepository.findByProductAndLocation(foundLoc.getProductID(), foundLoc.getLocationID());
+            int orderQuantity = foundLoc.getQuantity();
+            int newQuantity = stock.getQuantity() - orderQuantity;
+
+
+            stock.setQuantity(newQuantity);
+            stockRepository.save(stock);
 
         });
 

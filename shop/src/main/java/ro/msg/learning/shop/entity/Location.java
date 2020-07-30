@@ -1,7 +1,5 @@
-package ro.msg.learning.shop.entities;
+package ro.msg.learning.shop.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -29,7 +27,7 @@ public class Location {
     @Column(name = "county")
     private String county;
 
-    @Column(name = "street_Address")
+    @Column(name = "street_address")
     private String streetAddress;
 
 

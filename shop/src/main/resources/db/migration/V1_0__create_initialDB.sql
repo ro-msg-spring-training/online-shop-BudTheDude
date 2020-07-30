@@ -84,12 +84,12 @@ CREATE TABLE IF NOT EXISTS `stock` (
 
 );
 
-CREATE TABLE IF NOT EXISTS `orderDetail` (
+CREATE TABLE IF NOT EXISTS `order_detail` (
 
-                                       `order` int,
-                                       `product` int,
+                                       `order_id` int,
+                                       `product_id` int,
                                        `quantity` int,
-                                       primary key (`order`,`product`)
+                                       primary key (`order_id`,`product_id`)
 
 
 );
@@ -100,11 +100,11 @@ ALTER TABLE `stock`
 ALTER TABLE `stock`
     ADD FOREIGN KEY (`location_id`) REFERENCES `location`(`id`);
 
-ALTER TABLE `orderDetail`
-    ADD FOREIGN KEY (`order`) REFERENCES `order1`(`id`);
+ALTER TABLE `order_detail`
+    ADD FOREIGN KEY (`order_id`) REFERENCES `order1`(`id`);
 
-ALTER TABLE `orderDetail`
-    ADD FOREIGN KEY (`product`) REFERENCES `product`(`id`);
+ALTER TABLE `order_detail`
+    ADD FOREIGN KEY (`product_id`) REFERENCES `product`(`id`);
 
 ALTER TABLE `revenue`
     ADD FOREIGN KEY (`location`) REFERENCES `location`(`id`);

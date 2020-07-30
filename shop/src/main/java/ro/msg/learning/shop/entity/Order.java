@@ -1,6 +1,5 @@
-package ro.msg.learning.shop.entities;
+package ro.msg.learning.shop.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,7 +31,7 @@ public class Order {
     @ManyToOne
     private Customer customer;
 
-    @Column(name = "created_At")
+    @Column(name = "created_at")
     private String createdAt;
 
     @Column(name = "country")
@@ -44,7 +43,7 @@ public class Order {
     @Column(name = "county")
     private String county;
 
-    @Column(name = "street_Address")
+    @Column(name = "street_address")
     private String streetAddress;
 
 

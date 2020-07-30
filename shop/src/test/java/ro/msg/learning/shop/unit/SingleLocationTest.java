@@ -1,4 +1,4 @@
-package ro.msg.learning.shop.strategyUnitTests;
+package ro.msg.learning.shop.unit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,8 +9,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ro.msg.learning.shop.dto.OrderDTO;
 import ro.msg.learning.shop.dto.SimplifiedProductDTO;
 import ro.msg.learning.shop.dto.StockDTO;
-import ro.msg.learning.shop.embedded_IDs.StockID;
-import ro.msg.learning.shop.entities.Stock;
+import ro.msg.learning.shop.embeddedid.StockID;
+import ro.msg.learning.shop.entity.Stock;
 import ro.msg.learning.shop.repositories.StockRepository;
 import ro.msg.learning.shop.strategy.SingleLocation;
 

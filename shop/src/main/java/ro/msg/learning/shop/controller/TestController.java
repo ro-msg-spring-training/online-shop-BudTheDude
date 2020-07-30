@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ro.msg.learning.shop.dto.OrderDTO;
-import ro.msg.learning.shop.entities.Order;
+import ro.msg.learning.shop.entity.Order;
 import ro.msg.learning.shop.service.OrderService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -38,7 +39,7 @@ public class TestController {
                 "insert into stock values(2,1,20);\n" +
                 "insert into stock values(2,2,80);";
 
-        Connection conn = DriverManager.getConnection ("jdbc:h2:mem:test", "sa","");
+        Connection conn = DriverManager.getConnection("jdbc:h2:mem:test", "sa", "");
         Statement statement = conn.createStatement();
         statement.execute(query);
         return "Success";
@@ -46,16 +47,18 @@ public class TestController {
 
     @PostMapping("/clear")
     public String test() throws SQLException {
-        String query = "DELETE FROM order1;\n" +
-                "DELETE FROM stock;\n" +
-                "DELETE FROM customer;\n" +
-                "DELETE FROM product;\n" +
-                "DELETE FROM product_Category;\n" +
-                "DELETE FROM supplier;\n" +
-                "DELETE FROM orderDetail;\n" +
-                "DELETE FROM location;\n" +
-                "DELETE FROM revenue;";
-        Connection conn = DriverManager.getConnection ("jdbc:h2:mem:test", "sa","");
+        String query = "SET REFERENTIAL_INTEGRITY FALSE;\n" +
+                "TRUNCATE TABLE order1;\n" +
+                "TRUNCATE TABLE stock;\n" +
+                "TRUNCATE TABLE customer;\n" +
+                "TRUNCATE TABLE product;\n" +
+                "TRUNCATE TABLE product_Category;\n" +
+                "TRUNCATE TABLE supplier;\n" +
+                "TRUNCATE TABLE orderDetail;\n" +
+                "TRUNCATE TABLE location;\n" +
+                "TRUNCATE TABLE revenue;" +
+                "SET REFERENTIAL_INTEGRITY TRUE;\n";
+        Connection conn = DriverManager.getConnection("jdbc:h2:mem:test", "sa", "");
         Statement statement = conn.createStatement();
         statement.execute(query);
         return "Success";

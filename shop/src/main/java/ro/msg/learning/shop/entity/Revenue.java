@@ -1,6 +1,7 @@
-package ro.msg.learning.shop.entities;
+package ro.msg.learning.shop.entity;
 
 import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -18,6 +19,6 @@ public class Revenue {
     @Column(name = "date")
     private Date date;
 
-    @Column(name ="sum")
+    @Column(name = "sum")
     private long sum;
 }

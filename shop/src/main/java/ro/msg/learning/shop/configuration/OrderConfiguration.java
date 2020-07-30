@@ -8,23 +8,21 @@ import ro.msg.learning.shop.strategy.MostAbundant;
 import ro.msg.learning.shop.strategy.OrderingStrategy;
 import ro.msg.learning.shop.strategy.SingleLocation;
 
-import java.util.Objects;
-
 
 @Configuration
 @AllArgsConstructor
 public class OrderConfiguration {
 
-    private final static Integer SingleLocation = 1;
 
     private final Environment env;
 
     @Bean
-    public OrderingStrategy orderingStrategy(){
-            int strategy = Integer.parseInt(Objects.requireNonNull(env.getProperty("selectedStrategy")));
-            if(strategy == SingleLocation)
-                return new SingleLocation();
-            else
-                return new MostAbundant();
+    public OrderingStrategy orderingStrategy() {
+        String strategy = env.getProperty("selectedStrategy");
+        if ("SingleLocation".equals(strategy)) {
+            return new SingleLocation();
+        } else {
+            return new MostAbundant();
+        }
     }
 }
