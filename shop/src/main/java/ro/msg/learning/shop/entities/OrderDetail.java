@@ -1,7 +1,6 @@
 package ro.msg.learning.shop.entities;
 
 import ro.msg.learning.shop.embedded_IDs.OrderDetailID;
-
 import javax.persistence.*;
 
 @Entity

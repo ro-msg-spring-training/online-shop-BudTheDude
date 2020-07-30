@@ -18,7 +18,6 @@ public class SingleLocation implements OrderingStrategy {
         Set<Integer> locationIDs = new HashSet<>();
         stocks.forEach((n) -> locationIDs.add(n.getStockID().getLocationID()));
 
-
         for(Integer n : locationIDs){
             List<Stock> candidate = stocks.stream().
                     filter(m->m.getStockID().getLocationID()==n).

@@ -3,8 +3,9 @@ package ro.msg.learning.shop.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldNameConstants;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,5 +28,6 @@ public class Supplier {
     private String name;
 
     @OneToMany(mappedBy = "supplier")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Product> products;
 }

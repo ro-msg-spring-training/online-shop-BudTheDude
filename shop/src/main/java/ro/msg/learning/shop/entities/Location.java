@@ -1,8 +1,10 @@
 package ro.msg.learning.shop.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
-import ro.msg.learning.shop.embedded_IDs.StockID;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,19 +29,22 @@ public class Location {
     @Column(name = "county")
     private String county;
 
-    @Column(name = "streetAddress")
+    @Column(name = "street_Address")
     private String streetAddress;
 
 
     @OneToMany(mappedBy = "shippedFrom")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Order> orders;
 
 
     @OneToMany(mappedBy = "location")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Revenue> revenues;
 
 
     @OneToMany(mappedBy = "location")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Stock> stockList;
 
 }

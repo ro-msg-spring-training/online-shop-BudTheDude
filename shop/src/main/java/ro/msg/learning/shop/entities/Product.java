@@ -1,11 +1,11 @@
 package ro.msg.learning.shop.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
-
-
 
 @Entity
 @Table(name = "product")
@@ -40,9 +40,11 @@ public class Product {
     private Supplier supplier;
 
     @OneToMany(mappedBy = "product")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Stock> stockList;
 
     @OneToMany(mappedBy = "product")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<OrderDetail> orderDetailList;
 
 

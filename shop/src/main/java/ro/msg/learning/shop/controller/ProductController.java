@@ -1,12 +1,9 @@
 package ro.msg.learning.shop.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ro.msg.learning.shop.dto.ProductDTO;
-import ro.msg.learning.shop.service.ProductCategoryService;
 import ro.msg.learning.shop.service.ProductService;
-import ro.msg.learning.shop.service.SupplierService;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ro.msg.learning.shop.strategyTests;
+package ro.msg.learning.shop.strategyUnitTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,12 +1,14 @@
 package ro.msg.learning.shop.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -20,9 +22,13 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
+    @JsonIgnore
     @ManyToOne
     private Location shippedFrom;
 
+
+    @JsonIgnore
     @ManyToOne
     private Customer customer;
 
@@ -42,6 +48,8 @@ public class Order {
     private String streetAddress;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "order")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<OrderDetail> orderDetailList;
 }

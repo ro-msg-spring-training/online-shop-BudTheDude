@@ -1,6 +1,8 @@
 package ro.msg.learning.shop.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,5 +23,6 @@ public class ProductCategory {
     private String description;
 
     @OneToMany(mappedBy = "category")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Product> products;
 }

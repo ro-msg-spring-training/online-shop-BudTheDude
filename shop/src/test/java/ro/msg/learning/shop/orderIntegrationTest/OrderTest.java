@@ -1,4 +1,4 @@
-package ro.msg.learning.shop;
+package ro.msg.learning.shop.orderIntegrationTest;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,6 +29,9 @@ import javax.annotation.Resource;
 import javax.annotation.sql.DataSourceDefinition;
 import javax.transaction.Transactional;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +42,7 @@ import static org.mockito.Mockito.when;
 @ActiveProfiles("test")
 @Transactional
 @SpringBootTest
-class ShopApplicationTests{
+class OrderTest {
 
 
 	@Autowired
@@ -47,6 +50,22 @@ class ShopApplicationTests{
 
 	@Test
 	void contextLoads() throws Exception {
+
+		String query = "insert into supplier values(1,'Comat');\n" +
+				"insert into product_category values(1,'Laptops','Best');\n" +
+				"insert into product values(1,'Asus','good',2000,4,1,1,'');\n" +
+				"insert into product values(2,'Dell','good',2000,4,1,1,'');\n" +
+				"insert into customer values(1,'Bogdan','Bud','budb','parola','@');\n" +
+				"insert into location values(1,'Dedeman','RO','BM','MM','Victoriei');\n" +
+				"insert into location values(2,'Metro','RO','BM','MM','Victoriei');\n" +
+				"insert into stock values(1,1,40);\n" +
+				"insert into stock values(1,2,10);\n" +
+				"insert into stock values(2,1,20);\n" +
+				"insert into stock values(2,2,80);";
+
+		Connection conn = DriverManager.getConnection ("jdbc:h2:mem:test", "sa","");
+		Statement statement = conn.createStatement();
+		statement.execute(query);
 
 		SimplifiedProductDTO simplifiedProductDTO = new SimplifiedProductDTO(1,10);
 		SimplifiedProductDTO simplifiedProductDTO2 = new SimplifiedProductDTO(2,20);
